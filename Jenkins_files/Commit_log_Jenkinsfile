@@ -1,0 +1,34 @@
+pipeline {
+  agent any
+  parameters {
+    string(name: 'BRANCH_NAME', defaultValue: '', description: 'specify the branch name', trim: true)
+	choice(name: 'Action', choices: ['select_action', 'Display_commit', 'exist'], description: 'select "Display_commit" to check latest commits, select "exist" to verify commit existence in branch')
+    string(name: 'COMMIT_NUMBER', defaultValue: 'Hash_value', description: 'Provide commit number to verify,If your action is to Display commits,you can ignore and leave the default value. ', trim: true)
+    string(name: 'Depth', defaultValue: '5', description: 'Commits will be printed on logs based on depth.For example ,if the depth is 5, the latest 5 commits will be shown.You can ignore this field if your action is(exist) to verify commit.', trim: true)
+  }
+  stages {
+    stage('Release dumps') {
+      agent { node { label '!master' } }
+	  steps {
+          withCredentials([
+            string(credentialsId: 'qr646899vng', variable: 'GIT_PASSWORD'),
+            usernamePassword(credentialsId: 'db644b-tb66', usernameVariable: 'SVN_USER', passwordVariable: 'SVN_PASSWORD'),
+          ]) {
+            wrap([$class: 'MaskPasswordsBuildWrapper', varPasswordPairs: [], varMaskRegexes: []]) {
+              sh '''
+				  rm -rf /tmp/git_verify_commit/*
+                  mkdir -p /tmp/git_verify_commit/code
+                  svn --non-interactive --no-auth-cache --username ${SVN_USER} --password ${SVN_PASSWORD} --force checkout https://github.com/clone_URL/GITHUB_BRANCH/Commit_log_exist /tmp/git_verify_commit/code
+                  chmod 755 /tmp/git_verify_commit/code -R
+                  dos2unix /tmp/git_verify_commit/code/*
+                  git clone https://github_user:${GIT_PASSWORD}@github.com/<Your_organisation_Name>/repository.git --single-branch --branch=${BRANCH_NAME} /tmp/git_verify_commit/${BRANCH_NAME}/
+				  cd /tmp/git_verify_commit/${BRANCH_NAME}/ && /tmp/git_verify_commit/code/commit_log_exist.sh ${COMMIT_NUMBER} ${Action} ${Depth}
+				  rm -rf /tmp/git_verify_commit/*
+              '''
+            }
+          }
+        }
+      }
+    }
+  }
+

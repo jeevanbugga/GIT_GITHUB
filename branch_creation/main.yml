@@ -1,0 +1,77 @@
+---
+- hosts: localhost
+  gather_facts: no
+#  vars_prompt:
+#    - name: git_pass
+#      private: yes
+
+  tasks:
+   - name: Clone the source repository
+     git:
+       repo: "https://{{git_user | urlencode}}:{{ git_pass | urlencode }}@github.com/<Your_Organisation_Name>/{{ github_repo }}.git"
+       dest: "/tmp/gitbranch/{{target_branch}}/"
+       version: "{{source_branch}}"
+
+   - name: Task will fail if the target branch does not exist. However, This failure can be ignored as it will proceed to create the branch.
+     command: "git ls-remote --exit-code --heads 'https://{{git_user | urlencode}} :{{ git_pass | urlencode }}@github.com/<Your_organisation_name>/{{ github_repo }}.git' {{ target_branch }}"
+     register: check_branch
+     args:
+       chdir: "/tmp/gitbranch/{{target_branch}}"
+     ignore_errors: true
+   
+   - name: Set Git configuration for commit author
+     command: 'git config --local user.name "{{git_user}}"'
+     args: 
+       chdir: "/tmp/gitbranch/{{target_branch}}"
+
+   - name: Fail play book if branch already exist
+     fail:
+       msg: "Target branch already exists in the repository, Please check and provide correct branch name to create"
+     when: check_branch.rc == 0
+
+   - name: Create new branch and switch on local repository
+     command: "git checkout -b {{target_branch}} {{ commit | default('HEAD', true)}}"
+     args: 
+       chdir: "/tmp/gitbranch/{{target_branch}}"
+
+   - name: grep snapshot value from pom file
+     shell: grep "SNAPSHOT" pom.xml  | cut -d  '>' -f2 | cut -d '<' -f1
+     register: source_snapshot_value
+     args:
+      chdir: "/tmp/gitbranch/{{target_branch}}"
+
+   - name: update pom files
+     shell: find -name '*.xml' | xargs sed -i 's/{{source_snapshot_value.stdout}}/{{target_branch}}-SNAPSHOT/g'
+     args:
+       chdir: "/tmp/gitbranch/{{target_branch}}"
+
+   - name: Display all modified files
+     shell: |
+       echo "Number of files modified: $(git status | grep 'modified' | wc -l)" && git status|grep 'modified'
+     args:
+       chdir: "/tmp/gitbranch/{{target_branch}}"
+     register: modified_files
+
+   - debug:
+       var: modified_files.stdout_lines
+
+   - name: Add changes to STAGE and commit to local repository
+     shell: |
+       git add .
+       git commit -m "updated POM files"
+     args:
+       chdir: "/tmp/gitbranch/{{target_branch}}"
+     register: git_stage
+     changed_when: git_stage.stdout != ""
+
+   - name: Push changes to remote repository
+     shell: "git push -u origin {{ target_branch }}"
+     args:
+       chdir: "/tmp/gitbranch/{{ target_branch }}"
+     register: git_push
+     changed_when: git_push.stdout != ""
+
+   - name: Clean up the cloned repository
+     file:
+       path: /tmp/gitbranch/{{target_branch}}
+       state: absent

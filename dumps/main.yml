@@ -1,0 +1,43 @@
+---
+- hosts: localhost
+  gather_facts: no
+#  vars_prompt:
+#    - name: git_pass
+#      private: yes
+
+  tasks:
+   - name: Register date
+     command: date +%Y%m%d
+     register: date
+
+   - name: Clone the source repository
+     git:
+       repo: "https://{{git_user | urlencode}}:{{ git_pass | urlencode }}@github.com/<YOUR_ORGANISATION_NAME>/{{ github_repo }}.git"
+       dest: "/tmp/git/{{source_branch}}/"
+       version: "{{source_branch}}"
+     
+   - name: Checkout to specific revision
+     git:
+       repo: "/tmp/git/{{source_branch}}/"
+       dest: "/tmp/git/{{source_branch}}/"
+       version: "{{ commit }}"
+
+   - name: Create ZIP file from specific revision
+     shell: |
+       rm -rf "/tmp/git/{{source_branch}}/.git"
+       cd "/tmp/git/{{source_branch}}/" && zip -r "/tmp/git/{{ date.stdout }}-{{ github_repo }}-{{ source_branch }}-{{ commit }}.zip" ./*
+ 
+ #DISABLE IF YOU DONT HAVE REQUIREMENT TO COPY CODE TO AN PARTICULAR SERVER.
+ #  - name: Copy file
+ #    shell: |
+ #      scp -r /tmp/git/{{ date.stdout }}-{{ github_repo }}-{{ source_branch }}-{{ commit }}.zip USER@server_ip:/u01/ng_release_dumps/
+
+ #  - name: Remove dump on ansible server
+ #    file:
+ #      path: /tmp/git/{{ date.stdout }}-{{ github_repo }}-{{ source_branch }}-{{ commit }}.zip
+ #      state: absent
+
+   - name: Remove clone copy on server
+     file:
+       path: /tmp/git/{{source_branch}}
+       state: absent

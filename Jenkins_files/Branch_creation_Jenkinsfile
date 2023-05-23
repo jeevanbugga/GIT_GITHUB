@@ -1,0 +1,31 @@
+pipeline {
+  agent any
+  parameters {
+    string(name: 'SOURCE_BRANCH', defaultValue: '', description: 'specify the source branch name')
+    string(name: 'TARGET_BRANCH', defaultValue: '', description: 'specify the target branch name')
+    string(name: 'COMMIT_NUMBER', defaultValue: '', description: 'If no commit number is provided, the branch will be created from the source branch head commit')
+    string(name: 'GITHUB_REPO', defaultValue: 'Nextgen', description: 'provide repository name, EX: Nextgen')
+  }
+  stages {
+    stage('Branch creation') {
+      agent { node { label '!master' } }
+	  steps { 
+          withCredentials([
+            string(credentialsId: '1435780f456', variable: 'GIT_PASSWORD'),
+            usernamePassword(credentialsId: '2236gff5wt', usernameVariable: 'SVN_USER', passwordVariable: 'SVN_PASSWORD')
+          ]) {
+            wrap([$class: 'MaskPasswordsBuildWrapper', varPasswordPairs: [], varMaskRegexes: []]) {
+              sh '''
+                rm -rf /tmp/gitbranch/branchcode
+                mkdir -p /tmp/gitbranch/branchcode
+                svn --non-interactive --no-auth-cache --username ${SVN_USER} --password ${SVN_PASSWORD} --force checkout https://github.com/clone_URL/Branch_creation/tasks /tmp/gitbranch/branchcode/
+                chmod 755 /tmp/gitbranch/branchcode -R
+                dos2unix /tmp/gitbranch/branchcode/*
+                ansible-playbook /tmp/gitbranch/branchcode/main.yml -e "source_branch=${SOURCE_BRANCH} target_branch=${TARGET_BRANCH} commit=${COMMIT_NUMBER} github_repo=${GITHUB_REPO} git_user=github_user_name git_pass=${GIT_PASSWORD}"
+              '''
+            }
+          }
+        }
+      }
+    }
+  }

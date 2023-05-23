@@ -1,0 +1,31 @@
+pipeline {
+  agent any
+  parameters {
+    string(name: 'BRANCH_NAME', defaultValue: '', description: 'specify the branch name')
+    string(name: 'COMMIT_NUMBER', defaultValue: '', description: 'Provide certified commitnumber')
+    string(name: 'GITHUB_REPO', defaultValue: 'Nextgen', description: 'provide repository name, EX: Nextgen')
+  }
+  stages {
+    stage('Release dumps') {
+      agent { node { label '!master' } }
+	  steps {
+          withCredentials([
+            string(credentialsId: '3456-gngvb', variable: 'GIT_PASSWORD'),
+            usernamePassword(credentialsId: '2356-hgnu-5t-5tt', usernameVariable: 'SVN_USER', passwordVariable: 'SVN_PASSWORD'),
+          ]) {
+            wrap([$class: 'MaskPasswordsBuildWrapper', varPasswordPairs: [], varMaskRegexes: []]) {
+              sh '''
+				  rm -rf /tmp/git/dumps
+                  mkdir -p /tmp/git/dumps
+                  svn --non-interactive --no-auth-cache --username ${SVN_USER} --password ${SVN_PASSWORD} --force checkout https://github.com/clone_URL/NG_Certified_dumps /tmp/git/dumps/
+                  chmod 755 /tmp/git/dumps -R
+                  dos2unix /tmp/git/dumps/*
+                  ansible-playbook /tmp/git/dumps/main.yml  -e 'source_branch=${BRANCH_NAME} commit=${COMMIT_NUMBER} github_repo=${GITHUB_REPO} git_user=github_user git_pass=${GIT_PASSWORD}'
+              '''
+            }
+          }
+        }
+      }
+    }
+  }
+
