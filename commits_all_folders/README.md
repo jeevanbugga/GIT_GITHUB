@@ -1,104 +1,102 @@
 - RUN this file in inside GIT cloned repository.<br>
-- Let asuume we have 3 folders in our main branch namer invest,retire and disbursment
+- Let asuume we have 3 folders in our main branch namer invest,retire and disbursment<br>
 - - if you run script **./head_head_minus_1_commit.sh** , it will display latest two commits of branch and all sub folders <br>
-__sample output__
--------------------------------------------------------------------------------------------------------------
-Branch: main/
--------------------------------------------------------------------------------------------------------------
-      Latest build   - Commit: **************
-                     - Author: user1
-                     - Date: Fri May 19 22:01:32 2023 +0530                              
-                     - Message: Added flag to validate plan selection step (#160)                            
+__sample output__<br>
+-------------------------------------------------------------------------------------------------------------<br>
+Branch: main/<br>
+-------------------------------------------------------------------------------------------------------------<br>
+      Latest build   - Commit: ************** <br>
+                     - Author: user1<br>
+                     - Date: Fri May 19 22:01:32 2023 +0530                              <br>
+                     - Message: Added flag to validate plan selection step (#160)            <br>                
 
- 
+      Second Latest  - Commit: dfg*********** <br>
+                     - Author: sharma <br>
+                     - Date: Thu May 18 15:21:18 2023 -0400                       <br>
+                     - Message: Event name not populated in Enrollment Wizard (#139)  <br>                   
+------------------------------------------------------------------------------------------------------------- <br>
+                   Please find the commits for each individual folder below.                                 <br>
+------------------------------------------------------------------------------------------------------------- <br>
+invest/ <br>
+------------------------------------------ <br>
+Latest Commit: <br>
+  - Commit: ********************** <br>
+  - Author: Raju <br>
+  - Date: Sun May 7 22:06:00 2023 +0000 <br>
+  - Message: updated properties file with network. <br>
 
-      Second Latest  - Commit: dfg***********
-                     - Author: sharma
-                     - Date: Thu May 18 15:21:18 2023 -0400                       
-                     - Message: Event name not populated in Enrollment Wizard (#139)                     
--------------------------------------------------------------------------------------------------------------
-                   Please find the commits for each individual folder below.                                 
--------------------------------------------------------------------------------------------------------------
-invest/
-------------------------------------------
-Latest Commit:
-  - Commit: **********************
-  - Author: Raju
-  - Date: Sun May 7 22:06:00 2023 +0000
-  - Message: updated properties file with network.
+Second Latest Commit: <br>
+  - Commit: ****************** <br>
+  - Author: Jeevan <br>
+  - Date: Wed May 3 01:38:14 2023 +0000 <br>
+  - Message: Created BC branch <br>
 
-Second Latest Commit:
-  - Commit: ******************
-  - Author: Jeevan
-  - Date: Wed May 3 01:38:14 2023 +0000
-  - Message: Created BC branch
+------------------------------------------ <br>
+retire/ <br>
+------------------------------------------ <br>
+Latest Commit: <br>
+  - Commit: ********************** <br>
+  - Author: koushik <br>
+  - Date: Sun May 7 22:09:27 2023 +0000 <br>
+  - Message: Reverted change <br>
 
-------------------------------------------
-retire/
-------------------------------------------
-Latest Commit:
-  - Commit: **********************
-  - Author: koushik
-  - Date: Sun May 7 22:09:27 2023 +0000
-  - Message: Reverted change
+Second Latest Commit: <br>
+  - Commit: *********************** <br>
+  - Author: Jeevan <br>
+  - Date: Wed May 3 01:38:14 2023 +0000 <br>
+  - Message: Created BC branch <br>
+------------------------------------------ <br>
+disbursment/ <br>
+------------------------------------------ <br>
+Latest Commit: <br>
+  - Commit: ***************** <br>
+  - Author: Raju <br>
+  - Date: Sun May 7 22:17:30 2023 +0000 <br>
+  - Message: DEPLOYMENT: updated properties file with network details. <br>
 
-Second Latest Commit:
-  - Commit: ***********************
-  - Author: Jeevan
-  - Date: Wed May 3 01:38:14 2023 +0000
-  - Message: Created BC branch
-------------------------------------------
-disbursment/
-------------------------------------------
-Latest Commit:
-  - Commit: *****************
-  - Author: Raju
-  - Date: Sun May 7 22:17:30 2023 +0000
-  - Message: DEPLOYMENT: updated properties file with network details.
+Second Latest Commit: <br>
+  - Commit: ****************** <br>
+  - Author: Jeevan <br>
+  - Date: Wed May 3 01:38:14 2023 +0000 <br>
+  - Message: Created BC branch <br>
 
-Second Latest Commit:
-  - Commit: ******************
-  - Author: Jeevan
-  - Date: Wed May 3 01:38:14 2023 +0000
-  - Message: Created BC branch
-
-------------------------------------------
-------------------------------------------------------------------
-                      Commits Displayed                           
-------------------------------------------------------------------
+------------------------------------------ <br>
+------------------------------------------------------------------ <br>
+                      Commits Displayed                           <br>
+------------------------------------------------------------------ <br>
 
 
 - if you run script **./commit_log_exist.sh** ,it will display latest commit of branch and all sub folders<br>
-__sample output__
--------------------------------------------------------------------------------------------------------------
-      Latest build commit: 9fdnfd68*************
-                   Author: uder1
-                   Date: Fri May 19 22:01:32 2023 +0530
-                   commit message: Added flag to validate plan selection step
--------------------------------------------------------------------------------------------------------------
-                    Please find indivudual folder commits below
--------------------------------------------------------------------------------------------------------------
-invest
-------------------------------------------
-commit: 38***********************
-author: Vthomu
-message: updated trade details
-Date: Sun May 7 22:06:00 2023 +0000
-------------------------------------------
-retire
-------------------------------------------
-commit: 245***********************
-author: rajuv
-message: DEPLOYMENT: updated properties file with network 2.0 details.
-Date: Sun May 7 22:09:27 2023 +0000
-------------------------------------------
-disbursment
-------------------------------------------
-commit: 6e*******************
-author: vthor
-message: updated properties file.
-Date: Sun May 7 22:09:20 2023 +0000
-------------------------------------------
-------------------------------------------------------------------
-                         END
-------------------------------------------------------------------
+__sample output__ <br>
+------------------------------------------------------------------------------------------------------------- <br>
+      Latest build commit: 9fdnfd68************* <br>
+                   Author: uder1 <br>
+                   Date: Fri May 19 22:01:32 2023 +0530 <br>
+                   commit message: Added flag to validate plan selection step<br>
+------------------------------------------------------------------------------------------------------------- <br>
+                    Please find indivudual folder commits below <br>
+------------------------------------------------------------------------------------------------------------- <br>
+invest <br>
+------------------------------------------ <br>
+commit: 38*********************** <br>
+author: Vthomu <br>
+message: updated trade details <br>
+Date: Sun May 7 22:06:00 2023 +0000 <br>
+------------------------------------------ <br>
+retire <br>
+------------------------------------------ <br>
+commit: 245*********************** <br>
+author: rajuv <br>
+message: updated properties file with network 2.0 details. <br>
+Date: Sun May 7 22:09:27 2023 +0000 <br>
+------------------------------------------ <br>
+disbursment <br>
+------------------------------------------ <br>
+commit: 6e******************* <br>
+author: vthor <br>
+message: updated properties file. <br>
+Date: Sun May 7 22:09:20 2023 +0000 <br>
+------------------------------------------ <br>
+------------------------------------------------------------------ <br>
+                         END <br>
+------------------------------------------------------------------ <br>
