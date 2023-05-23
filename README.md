@@ -1,4 +1,4 @@
-I have contributed several automations to my organization, which have helped reduce the number of licenses required and ultimately resulted in cost savings.
+I have contributed several automations to my organization, which have helped reduce the number of licenses required for DEVOPS team and ultimately resulted in cost savings.
 -------------------------------------------------------------------------------------------------------------------------------------------------------------
 1.we used GITHUB as remote repository. <br>
 
