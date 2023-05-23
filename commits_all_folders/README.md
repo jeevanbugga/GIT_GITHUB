@@ -1,6 +1,6 @@
 - RUN this file in inside GIT cloned repository.<br>
-- Let asuume we have 3 folders in our main branch namer invest,retire and disbursment<br>
-- - if you run script **./head_head_minus_1_commit.sh** , it will display latest two commits of branch and all sub folders <br>
+- Let asuume we have 3 folders in our main branch namer invest,retire and disbursment.<br>
+- - if you run script **./head_head_minus_1_commit.sh** , it will display latest two commits of branch and all sub folders. <br>
 __sample output__<br>
 -------------------------------------------------------------------------------------------------------------<br>
 Branch: main/ <br>
@@ -66,7 +66,7 @@ Second Latest Commit: <br>
 ------------------------------------------------------------------ <br>
 
 
-- if you run script **./commit_log_exist.sh** ,it will display latest commit of branch and all sub folders<br>
+- if you run script **./commit_log_exist.sh** ,it will display latest commit of branch and all sub folders.<br>
 __sample output__ <br>
 ------------------------------------------------------------------------------------------------------------- <br>
       Latest build commit: 9fdnfd68************* <br>
