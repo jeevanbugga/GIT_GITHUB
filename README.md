@@ -1,6 +1,6 @@
 I have contributed several automations to my organization, which have helped reduce the number of licenses required for DEVOPS team and ultimately resulted in cost savings.
 -------------------------------------------------------------------------------------------------------------------------------------------------------------
--we used GITHUB as remote repository. <br>
+- we used GITHUB as remote repository. <br>
 
 -The code in the **'branch_creation'** folder creates a Git branch by taking the source GitHub branch and then pushes the newly created branch to GitHub. <br>
 
