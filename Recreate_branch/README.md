@@ -3,7 +3,7 @@ __Branch Recreation__ <br>
 
 - Command: <br>
 
-__ansible-playbook main.yml -e "source_branch=${SOURCE_BRANCH} target_branch=${REBASE_BRANCH} commit=${COMMIT_NUMBER} github_repo=repository git_user=github_user git_pass=${GIT_PASSWORD}"__ <br>
+<sub>__ansible-playbook main.yml -e "source_branch=${SOURCE_BRANCH} target_branch=${REBASE_BRANCH} commit=${COMMIT_NUMBER} github_repo=repository git_user=github_user git_pass=${GIT_PASSWORD}"__</sub> <br>
 
 - Please find the Jenkins file at below path.<br>
 __https://github.com/jeevanbugga/GIT_GITHUB.git/Jenkins_files/recreate_branch_Jenkinsfile__ <br>
