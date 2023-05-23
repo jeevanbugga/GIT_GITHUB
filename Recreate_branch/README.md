@@ -1,4 +1,4 @@
-__Branch Recreation__
+__Branch Recreation__ <br>
 1.The code first discards target branch from GIT HUB and creates a new target Git branch by taking the source code from GitHub source branch and then pushes the newly created branch to GitHub.<br>
 
 2.Command: <br>
