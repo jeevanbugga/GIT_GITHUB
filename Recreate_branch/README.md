@@ -1,8 +1,9 @@
 __Branch Recreation__ <br>
-1.The code first discards target branch from GIT HUB and creates a new target Git branch by taking the source code from GitHub source branch and then pushes the newly created branch to GitHub.<br>
+- The code first discards target branch from GIT HUB and creates a new target Git branch by taking the source code from GitHub source branch and then pushes the newly created branch to GitHub.<br>
 
-2.Command: <br>
-__ansible-playbook main.yml -e "source_branch=${SOURCE_BRANCH} target_branch=${REBASE_BRANCH} commit=${COMMIT_NUMBER} github_repo=repository git_user=github_user git_pass=${GIT_PASSWORD}"__ <br>
+- Command: <br>
+'''
+__ansible-playbook main.yml -e "source_branch=${SOURCE_BRANCH} target_branch=${REBASE_BRANCH} commit=${COMMIT_NUMBER} github_repo=repository git_user=github_user git_pass=${GIT_PASSWORD}"__''' <br>
 
-3.Please find the Jenkins file at below path.<br>
+- Please find the Jenkins file at below path.<br>
 __https://github.com/jeevanbugga/GIT_GITHUB.git/Jenkins_files/recreate_branch_Jenkinsfile__ <br>
