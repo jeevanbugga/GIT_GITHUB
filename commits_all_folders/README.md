@@ -3,16 +3,16 @@
 - - if you run script **./head_head_minus_1_commit.sh** , it will display latest two commits of branch and all sub folders <br>
 __sample output__<br>
 -------------------------------------------------------------------------------------------------------------<br>
-Branch: main/<br>
+Branch: main/ <br>
 -------------------------------------------------------------------------------------------------------------<br>
       Latest build   - Commit: ************** <br>
                      - Author: user1<br>
-                     - Date: Fri May 19 22:01:32 2023 +0530                              <br>
-                     - Message: Added flag to validate plan selection step (#160)            <br>                
+                     - Date: Fri May 19 22:01:32 2023 +0530 <br>
+                     - Message: Added flag to validate plan selection step (#160) <br>                
 
       Second Latest  - Commit: dfg*********** <br>
                      - Author: sharma <br>
-                     - Date: Thu May 18 15:21:18 2023 -0400                       <br>
+                     - Date: Thu May 18 15:21:18 2023 -0400  <br>
                      - Message: Event name not populated in Enrollment Wizard (#139)  <br>                   
 ------------------------------------------------------------------------------------------------------------- <br>
                    Please find the commits for each individual folder below.                                 <br>
