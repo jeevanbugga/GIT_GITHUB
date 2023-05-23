@@ -1,8 +1,8 @@
 I have contributed several automations to my organization, which have helped reduce the number of licenses required and ultimately resulted in cost savings.
 -------------------------------------------------------------------------------------------------------------------------------------------------------------
-we used GITHUB as remote repository. 1<br>
+1.we used GITHUB as remote repository. 1<br>
 
-The code in the "branch_creation" folder creates a Git branch by taking the source GitHub branch and then pushes the newly created branch to GitHub. 2<br>
+2.The code in the "branch_creation" folder creates a Git branch by taking the source GitHub branch and then pushes the newly created branch to GitHub. 2<br>
 
 3.Code in the "Recreate_branch" folder discards the target branch for backup purposes and creates a new branch, which is then pushed to the remote repository.<br>
 
