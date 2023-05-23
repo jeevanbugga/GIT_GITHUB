@@ -25,6 +25,7 @@ Commit-3:<br>
   - Message: Updatem POM files<br>
 
 - If you select action as exist with the commit you want to verify,It will print whether the commit exist in branch or not.<br>
+
 __Sample output if commit exist.__<br>
 
 ------------------------------------------<br>
